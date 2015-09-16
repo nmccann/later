@@ -16,6 +16,21 @@ describe('Set timeout', function() {
     later.setTimeout(test, s);
   });
 
+  it('should execute a callback for a one-time occurrence after the specified amount of time', function(done) {
+    this.timeout(0);
+	
+    var offsetInMilliseconds = 2000;
+    var now = new Date()
+    var nowOffset = now.getTime() + offsetInMilliseconds
+    var s = later.parse.recur().on(new Date(nowOffset)).fullDate();
+
+    function test() {
+      done();
+    }
+
+    later.setTimeout(test, s);
+  });
+
   it('should allow clearing of the timeout', function(done) {
     this.timeout(0);
 
